@@ -8,3 +8,12 @@ Work FLow:
                                                    => power supply unit => battery case*1
                                                                         => 3.7v battery*1
                                                                         => 7085 IC*1
+
+
+Thresholds:
+-----------------------------------------
+#flame = 
+#temp => normal : 28-30
+      => greater than 32
+#humidity = 
+#gas = 
