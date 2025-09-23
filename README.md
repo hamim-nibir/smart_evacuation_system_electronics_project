@@ -12,8 +12,11 @@ Work FLow:
 
 Thresholds:
 -----------------------------------------
-#flame = 
+#flame => normal : greater than 900 less than 1000
+       => high flame : below 750
+      => no flame : greater than 1001
 #temp => normal : 28-30
       => greater than 32
-#humidity = 
-#gas = 
+#humidity => 
+#gas => normal : greater than 500 less than 700
+     => high risk : greater than 800 less than 900
