@@ -43,7 +43,7 @@ void loop()
   long humid1 = randHum;
   
   
-  delay(5000); // DHT22 needs ~2 seconds delay between readings
+  // delay(5000); // DHT22 needs ~2 seconds delay between readings
 
   float humidity = dht.readHumidity();
   float temperature = dht.readTemperature(); // Celsius
@@ -77,16 +77,16 @@ void loop()
   if((humid1<=35) && (temp1<=30) && (fs_1a_val>=1015) && (gs_1a_val<=320)){
     Serial.println("No risk! Everything is Fine!");
     digitalWrite(23, LOW);
-    delay(2000); 
+    delay(500); 
   }
   else if((humid1>35 && temp1>30) || (fs_1a_val>=800 && fs_1a_val<=950) || (gs_1a_val>650 && gs_1a_val <= 750)){
       Serial.println("Medium Risk!");
       digitalWrite(23, HIGH);
-      delay(2000); 
+      delay(500); 
   }
   else if((humid1>35 && temp1>30) || (fs_1a_val<750) || (gs_1a_val>800)){
     Serial.println("High Risk!");
     digitalWrite(23, HIGH);
-    delay(2000); 
+    delay(500); 
   }
 }
