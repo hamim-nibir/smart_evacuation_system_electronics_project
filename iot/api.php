@@ -15,7 +15,7 @@ if ($conn->connect_error) {
     exit;
 }
 
-// corridors count
+// corridors count (adjust if you monitor more)
 $max_corridors = 5;
 
 // We'll get the latest row for each corridor using a subquery
@@ -32,12 +32,17 @@ ORDER BY t.corridor_id ASC
 ";
 
 $stmt = $conn->prepare($sql);
+if (!$stmt) {
+    http_response_code(500);
+    echo json_encode(['error' => 'prepare failed', 'details' => $conn->error]);
+    exit;
+}
 $stmt->bind_param("i", $max_corridors);
 $stmt->execute();
 $res = $stmt->get_result();
 
 $result = [];
-// Initialize with empty object for each corridor index so UI doesn't break
+// Initialize with null for each corridor index so UI doesn't break
 for ($i=1; $i <= $max_corridors; $i++) {
     $result[$i] = null;
 }
@@ -52,8 +57,8 @@ while ($row = $res->fetch_assoc()) {
 
     // Simple risk logic: tweak thresholds to your needs
     $risk = 'low';
-    if (($flame !== null && $flame > 800) || ($gas !== null && $gas > 800)) $risk = 'high';
-    else if (($flame !== null && $flame > 400) || ($gas !== null && $gas > 400)) $risk = 'medium';
+    if (($flame !== null && $flame < 700) || ($gas !== null && $gas < 100)) $risk = 'high';
+    else if (($flame !== null && $flame < 900) || ($gas !== null && $gas < 120)) $risk = 'medium';
 
     $result[$cid] = [
         'flame' => $flame,
@@ -68,4 +73,3 @@ while ($row = $res->fetch_assoc()) {
 echo json_encode($result);
 $stmt->close();
 $conn->close();
-?>
