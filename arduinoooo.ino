@@ -5,10 +5,14 @@
 // ===================== Pins =====================
 #define LED1_R1 30
 #define LED2_R1 31
+#define LED1_R3 32
+#define LED2_R3 33
+
 #define SERVO_PIN 9
 
 // ===================== Corridor led Pins =====================
 #define LED_c1 52
+#define LED_c2 53
 
 Servo exitServo;
 int lastServoPos = 0; // track servo position
@@ -140,7 +144,12 @@ void handleC5Count() {
 void setup() {
   pinMode(LED1_R1, OUTPUT);
   pinMode(LED2_R1, OUTPUT);
+  pinMode(LED1_R3, OUTPUT);
+  pinMode(LED2_R3, OUTPUT);
+
   pinMode(LED_c1, OUTPUT);
+  pinMode(LED_c2, OUTPUT);
+
   exitServo.attach(SERVO_PIN);
 
   // IR pins
@@ -199,7 +208,11 @@ void loop() {
 
   digitalWrite(LED2_R1, risk1 == 15 ? HIGH : LOW); 
   digitalWrite(LED1_R1, risk2 == 15 ? HIGH : LOW);
-  digitalWrite(LED_c1, risk1 == 15 ? HIGH : LOW); 
+  digitalWrite(LED_c1, risk1 == 15 ? HIGH : LOW);
+
+  digitalWrite(LED2_R3, risk2 == 15 ? HIGH : LOW); 
+  digitalWrite(LED1_R3, risk3 == 15 ? HIGH : LOW);
+  digitalWrite(LED_c2, risk2 == 15 ? HIGH : LOW); 
 
   // Servo logic
   if (risk4 == 15 && lastServoPos != 90) {
