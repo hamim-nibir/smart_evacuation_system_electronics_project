@@ -94,11 +94,11 @@ void loop() {
   if (isnan(temp5)) temp5 = 0; if (isnan(hum5)) hum5 = 0;
 
   // ===== Risk calculations =====
-  int risk1 = (flameVal1 < 700) ? 15 : (flameVal1 < 900) ? 10 : 5;
-  int risk2 = (flameVal2 < 700) ? 15 : (flameVal2 < 900) ? 10 : 5;
-  int risk3 = (flameVal3 < 700) ? 15 : (flameVal3 < 900) ? 10 : 5;
-  int risk4 = (flameVal4 < 700) ? 15 : (flameVal4 < 900) ? 10 : 5;
-  int risk5 = (flameVal5 < 700) ? 15 : (flameVal5 < 900) ? 10 : 5;
+  int risk1 = (flameVal1 < 400) ? 15 : (flameVal1 < 900) ? 10 : 5;
+  int risk2 = (flameVal2 < 400) ? 15 : (flameVal2 < 900) ? 10 : 5;
+  int risk3 = (flameVal3 < 400) ? 15 : (flameVal3 < 900) ? 10 : 5;
+  int risk4 = (flameVal4 < 400) ? 15 : (flameVal4 < 900) ? 10 : 5;
+  int risk5 = (flameVal5 < 400) ? 15 : (flameVal5 < 900) ? 10 : 5;
 
   digitalWrite(LED2_R1, risk1 == 15 ? HIGH : LOW); 
   digitalWrite(LED1_R1, risk2 == 15 ? HIGH : LOW);
