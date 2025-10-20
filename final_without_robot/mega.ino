@@ -3,7 +3,7 @@
 #include <Servo.h>
 #include <Wire.h>
 
-#define NANO_ADDR 0x08
+#define UNO_ADDR 0x08
 
 long totalCount = 0;
 long escC4 = 0;
@@ -73,7 +73,7 @@ void setup() {
 
 void loop() {
   // ===== 1. Request counts from Nano =====
-  Wire.requestFrom(NANO_ADDR, 20);
+  Wire.requestFrom(UNO_ADDR, 20);
   String data = "";
   while (Wire.available()) {
     char c = Wire.read();
